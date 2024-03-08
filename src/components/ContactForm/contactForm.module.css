@@ -1,0 +1,51 @@
+.form {
+    border: 2px solid rgba(72, 62, 62, 0.87);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+    width: 340px;
+    /* height: 150px; */
+    padding: 10px;
+    gap: 20px;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+
+.contactImput{
+    flex-direction: column;
+    flex-wrap: wrap;
+    display: flex;
+    gap: 20px;
+}
+
+
+.contactName{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+.contactTel{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.telIcon{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    color: rgb(194, 104, 122)
+}
+
+.inputCon{
+    background-color: #fcadc2;
+    border-radius: 4px;
+    margin-left: 10px;
+}
