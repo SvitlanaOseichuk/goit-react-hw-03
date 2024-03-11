@@ -20,11 +20,10 @@ const App = () => {
 
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
-  },[contacts])
+  }, [contacts]);
+
   
 
-
-  //відповідає за додаваня нових контактів
   const onAddNewContact = (newContactData) => {
     const FinalContact = {
       ...newContactData,

@@ -1,6 +1,4 @@
-.form {
-    border: 2px solid rgba(72, 62, 62, 0.87);
-    border-radius: 14px;
+.SearchBox{
     display: flex;
     align-items: center;
     justify-items: center;
@@ -9,20 +7,11 @@
     /* height: 150px; */
     gap: 15px;
     padding: 20px;
-    font-size: 20px;
-    font-weight: 500;
+    font-size: 15px;
+    font-weight: 600;
 }
-
-
-.contactForm{
-    flex-direction: column;
-    flex-wrap: wrap;
-    display: flex;
-    gap: 20px;
-}
-
-
-.contactImput{
+ 
+.SearchContLabel{
     display: flex;
     align-items: center;
     justify-items: center;
@@ -31,29 +20,22 @@
     padding-top: 5px;
 }
 
-.telIcon{
+.inputIcon{
     display: flex;
     align-items: center;
     justify-items: center;
     color: rgb(194, 104, 122);
-    font-size: 21px;
+    font-size: 20px;
 }
 
-.inputCon{
+.SearchContImput{
     background-color: #fcadc2;
     border-radius: 4px;
     margin-left: 10px;
     outline: none;
     color: rgba(72, 62, 62, 0.87);
     padding: 3px 5px;
+
 }
 
-.ErrorMessage {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    font-size: 13px;
-    font-weight: 600;
-    color: rgb(220, 57, 79)
-}
+

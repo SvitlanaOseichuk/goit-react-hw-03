@@ -15,8 +15,8 @@ const ContactFormSchema = Yup.object().shape({
 
   number: Yup.string()
     .matches(/^\+?\d+$/, 'Invalid phone number')
-    .min(3, 'Too short, must be at least 3 digits')
-    .max(15, 'Too long, must be at most 15 digits')
+    .min(3, 'Too short')
+    .max(15, 'Too long')
     .required('Number is required'),
 });
 
@@ -36,15 +36,14 @@ const ContactForm = ({ onAddNewContact }) => {
  }
 
 
-
   return(
 
     <Formik validationSchema={ContactFormSchema} initialValues={INITIAL_FORM_VALUES} onSubmit={handleSubmit}>
 
       <Form  className={css.form}>
 
-        <div className={css.contactImput}>
-          <label className={css.contactName}>
+        <div className={css.ContactForm}>
+          <label className={css.contactImput}>
             <span><IoMdContact className={css.telIcon}/></span>
             <Field 
               type='text' 
@@ -52,10 +51,10 @@ const ContactForm = ({ onAddNewContact }) => {
               placeholder='Jennie Kim' 
               className={css.inputCon}
             />
-            <ErrorMessage name='name' component='span' />
+            <ErrorMessage name='name' component='span' className={css.ErrorMessage} />
           </label>
 
-          <label className={css.contactTel} >
+          <label className={css.contactImput} >
             <span><BsFillTelephoneFill className={css.telIcon}/></span>
             <Field 
               type='tel' 
@@ -63,7 +62,7 @@ const ContactForm = ({ onAddNewContact }) => {
               placeholder='2345678' 
               className={css.inputCon} 
             />
-            <ErrorMessage name='number' component='span' />
+            <ErrorMessage name='number' component='span' className={css.ErrorMessage} />
           </label>
         </div>
 
