@@ -30,6 +30,7 @@
 
 .SearchContImput{
     background-color: #fcadc2;
+    border: 1px solid rgba(72, 62, 62, 0.87);
     border-radius: 4px;
     margin-left: 10px;
     outline: none;
