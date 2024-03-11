@@ -1,92 +1,78 @@
 import React, { useState, useEffect } from 'react';
 import css from './contactForm.module.css'
-import { IoMdContact } from "react-icons/io";
-import { BsFillTelephoneFill } from "react-icons/bs";
+import { IoMdContact } from 'react-icons/io';
+import { BsFillTelephoneFill } from 'react-icons/bs';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import * as Yup from 'yup';
+
+
+const ContactFormSchema = Yup.object().shape({
+
+  name: Yup.string()
+    .min(3, 'Too short')
+    .max(50, 'Too long')
+    .required('Name is required'),
+
+  number: Yup.string()
+    .matches(/^\+?\d+$/, 'Invalid phone number')
+    .min(3, 'Too short, must be at least 3 digits')
+    .max(15, 'Too long, must be at most 15 digits')
+    .required('Number is required'),
+});
+
+
+
+const INITIAL_FORM_VALUES = {
+  name: '',
+  number: '',
+}
+
 
 const ContactForm = ({ onAddNewContact }) => {
 
-  
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-
-  const handleChange = e => {
-    if(e.target.name ===  "name") {
-      setName(e.target.value)
-    } else if (e.target.name === "number") {
-      setNumber(e.target.value)
-    }
-  }
-
-
-  const handleFormSubmit = e => {
-    e.preventDefault();
-
-    const {name, number} = e.currentTarget.elements;
-
-    const formData = {
-      name: name.value,
-      number: number.value
-    }
-
-    onAddNewContact(formData);
-
- // Очистити стани
-   setName('');
-   setNumber('');
-};
-  
+  const handleSubmit = (values, formActions) => {
+    onAddNewContact(values);
+    formActions.resetForm();
+ }
 
 
 
   return(
 
-    <form onSubmit={handleFormSubmit} className={css.form}>
-      <div className={css.contactImput}>
+    <Formik validationSchema={ContactFormSchema} initialValues={INITIAL_FORM_VALUES} onSubmit={handleSubmit}>
 
-      <label className={css.contactName}>
-        <span><IoMdContact className={css.telIcon}/></span>
-        <input 
-          className={css.inputCon}
-          type='text'
-          name='name'
-          required
-          placeholder='Jennie Kim'
-          value={name}
-          onChange={handleChange}
-        />
-      </label>
+      <Form  className={css.form}>
 
-      <label className={css.contactTel} >
-        <span><BsFillTelephoneFill className={css.telIcon}/></span>
-        <input
-          className={css.inputCon}
-          type='tel'
-          name='number'
-          required
-          placeholder='2345678'
-          value={number}
-          onChange={handleChange} />
-      </label>
+        <div className={css.contactImput}>
+          <label className={css.contactName}>
+            <span><IoMdContact className={css.telIcon}/></span>
+            <Field 
+              type='text' 
+              name='name' 
+              placeholder='Jennie Kim' 
+              className={css.inputCon}
+            />
+            <ErrorMessage name='name' component='span' />
+          </label>
 
-      </div>
+          <label className={css.contactTel} >
+            <span><BsFillTelephoneFill className={css.telIcon}/></span>
+            <Field 
+              type='tel' 
+              name='number' 
+              placeholder='2345678' 
+              className={css.inputCon} 
+            />
+            <ErrorMessage name='number' component='span' />
+          </label>
+        </div>
 
-          
-      {name === "Jennie Kim" && <p>Jennie Kim is a popular korean singe. Are you sure you know her number?</p>}
-      <button type='submit'>Add contact</button>
+        <button type='submit'>Add contact</button>
 
-    </form>
+      </Form>
+    </Formik>
     );
 }
 
 export default ContactForm
 
-  // const Form = ({onAdd}) => {
-  //   const handleSubit = (evt) => {
-  //       evt.preventDefault();
-  //       onAdd({
-  //           id: nanoid(),
-  //           text: evt.target.elements.text.value,
-  //       });
-  //       evt.target.reset();
-    
-  //   }
